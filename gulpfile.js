@@ -88,16 +88,16 @@ gulp.task('browser-sync', function() {
 /**
 *
 * Images
-* - Uncomment if you want to Compress them!
+* - Compress them!
 *
 **/
 gulp.task('img', function () {
-  return gulp.src('src/img/*')
-  /*.pipe(imagemin({
+  return gulp.src('src/img/**/*')
+  .pipe(imagemin({
     progressive: true,
     svgoPlugins: [{removeViewBox: false}],
     use: [pngquant()]
-  }))*/
+  }))
   .pipe(gulp.dest('public/img'));
 });
 
@@ -116,9 +116,9 @@ gulp.task('clean', function () {
 * Default task
 *
 **/
-gulp.task('watch', ['scss', 'browser-sync', 'scripts', 'img', 'html'], function () {
+gulp.task('watch', ['html', 'scss', 'browser-sync', 'scripts', 'img'], function () {
+  gulp.watch('src/*.html', ['html']);
   gulp.watch('src/scss/**/*.scss', ['scss']);
   gulp.watch('src/js/**/*.js', ['scripts']);
-  gulp.watch('src/img/*', ['img']);
-  gulp.watch('src/*.html', ['html']);
+  gulp.watch('src/img/*', ['img'])
 });
