@@ -120,5 +120,5 @@ gulp.task('watch', ['html', 'scss', 'browser-sync', 'scripts', 'img'], function 
   gulp.watch('src/*.html', ['html']);
   gulp.watch('src/scss/**/*.scss', ['scss']);
   gulp.watch('src/js/**/*.js', ['scripts']);
-  gulp.watch('src/img/*', ['img'])
+  gulp.watch('src/img/**/*', ['img'])
 });
