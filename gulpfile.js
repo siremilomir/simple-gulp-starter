@@ -19,17 +19,38 @@ var pngquant     = require('imagemin-pngquant');
 var notify       = require("gulp-notify");
 var htmlmin      = require('gulp-html-minifier');
 var clean        = require('gulp-clean');
+var include      = require('gulp-include');
+var nunjucksRender      = require('gulp-nunjucks-render');
+//var htmlrender   = require('gulp-htmlrender');
+
+
+
+/**
+* Nunjucks Templates
+**/
+gulp.task('templates', function () {
+  return gulp.src('src/pages/**/*.+(html|nunjucks)')
+    .pipe(nunjucksRender({
+      path: ['src/templates/'] // String or Array
+    }))
+    .pipe(htmlmin({collapseWhitespace: true, removeComments: true, preserveLineBreaks: true}))
+    .pipe(gulp.dest('public'));
+});
+
+
 
 /**
 *
 * HTML
 * - Minify
 **/
-gulp.task('html', function() {
-  gulp.src('src/*.html')
-    .pipe(htmlmin({collapseWhitespace: true}))
-    .pipe(gulp.dest('public'))
-});
+// gulp.task('html', function() {
+//   gulp.src('src/*.html')
+//     .pipe(htmlmin({collapseWhitespace: true}))
+//     .pipe(gulp.dest('public'))
+// });
+
+
 
 /**
 *
@@ -46,6 +67,30 @@ gulp.task('scripts', function() {
     }))
     .pipe(gulp.dest('public/js'))
 });
+
+
+/**
+* Javascript
+* - Vendors
+**/
+gulp.task('vendors', function() {
+  gulp.src('src/vendors/*.js')
+    .pipe(include())
+    .pipe(gulp.dest('public/vendors'))
+});
+
+/**
+* html render tpls
+**/
+
+// gulp.task('render', function() {
+// 	return gulp.src('src/*.html', {read: false})
+//         .pipe(htmlmin({collapseWhitespace: true}))
+// 		.pipe(htmlrender.render())
+// 		.pipe(gulp.dest('public'));
+// });
+
+
 
 /**
 *
@@ -70,6 +115,8 @@ gulp.task('scss', function() {
   .pipe(gulp.dest('public/css'));
 });
 
+
+
 /**
 *
 * BrowserSync
@@ -84,6 +131,8 @@ gulp.task('browser-sync', function() {
     }
   });
 });
+
+
 
 /**
 *
@@ -116,9 +165,12 @@ gulp.task('clean', function () {
 * Default task
 *
 **/
-gulp.task('watch', ['html', 'scss', 'browser-sync', 'scripts', 'img'], function () {
-  gulp.watch('src/*.html', ['html']);
+gulp.task('watch', ['scss', 'browser-sync', 'scripts', 'img', 'vendors', 'templates'], function () {
+  //gulp.watch('src/*.html', ['html']);
   gulp.watch('src/scss/**/*.scss', ['scss']);
   gulp.watch('src/js/**/*.js', ['scripts']);
-  gulp.watch('src/img/**/*', ['img'])
+  gulp.watch('src/img/**/*', ['img']);
+  gulp.watch('src/vendors/*.js', ['vendors']);
+  gulp.watch('src/**/*.+(html|nunjucks)', ['templates']);
+  //gulp.watch(['src/**/*.html'], ['render']);
 });

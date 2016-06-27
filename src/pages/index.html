@@ -1,0 +1,13 @@
+<!-- index.nunjucks -->
+{% extends "_layout.html" %}
+{% set pageHome = true %}
+{% block content %}
+{% import 'partials/_nav.html' as nav %}
+<!-- Creating the navigation with activePage = 'home' -->
+{{nav.active('home')}}
+
+<h1>This is the Home page</h1>
+<pre>http://zellwk.com/blog/nunjucks-with-gulp/</pre>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla harum, amet, quis ipsam ducimus fuga doloremque repudiandae hic eum itaque voluptas quasi veritatis enim. Impedit veritatis dolorem aliquid beatae iure harum ut enim, pariatur sit quos aspernatur, matero</p>
+
+{% endblock %}

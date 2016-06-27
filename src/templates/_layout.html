@@ -1,0 +1,31 @@
+<!-- layout.nunjucksaa -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% if pageHome %}
+    <title>HomePage</title>
+    {% endif %}
+    {% if pageAbout %}
+    <title>AboutPage</title>
+    {% endif %}
+    <link rel="stylesheet" href="css/style.min.css">
+</head>
+
+{% if pageAbout %}
+<body class="about">
+{% else %}
+<body>
+{% endif %}
+
+  <!-- You write code for this content block in another file -->
+  {% block content %} {% endblock %}
+
+
+<div class="footer">
+    <hr>
+    footer
+</div>
+</body>
+</html>
