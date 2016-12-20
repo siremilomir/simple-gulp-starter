@@ -1,0 +1,44 @@
+{
+  "name": "simple-gulp-starter",
+  "version": "1.0.0",
+  "description": "Simple Front End Gulp starter",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/siremilomir/simple-gulp-starter.git"
+  },
+  "keywords": [
+    "gulp",
+    "html",
+    "scss",
+    "js",
+    "images"
+  ],
+  "author": "Milomir Topic",
+  "license": "MIT",
+  "bugs": {
+    "url": "http://github.com/siremilomir/simple-gulp-starter/issues"
+  },
+  "homepage": "https://github.com/siremilomir/simple-gulp-starter",
+  "devDependencies": {
+    "browser-sync": "^2.0.0",
+    "gulp": "^3.8.8",
+    "gulp-autoprefixer": "^1.0.1",
+    "gulp-clean": "^0.3.2",
+    "gulp-html-minifier": "^0.1.8",
+    "gulp-imagemin": "^2.2.1",
+    "gulp-jshint": "^2.0.0",
+    "gulp-notify": "^2.2.0",
+    "gulp-plumber": "^0.6.6",
+    "gulp-rename": "^1.2.0",
+    "gulp-sass": "^2.0.4",
+    "gulp-uglify": "^1.1.0",
+    "imagemin-pngquant": "^4.0.0",
+    "gulp-include": "^2.1.0",
+    "gulp-nunjucks-render": "^2.0.0"
+  },
+  "dependencies": {}
+}
