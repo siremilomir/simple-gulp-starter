@@ -12,8 +12,8 @@ var sass         = require('gulp-sass');
 var browserSync  = require('browser-sync');
 var prefix       = require('gulp-autoprefixer');
 var plumber      = require('gulp-plumber');
-var uglify       = require('gulp-uglify');
-var rename       = require("gulp-rename");
+// var uglify       = require('gulp-uglify');
+// var rename       = require("gulp-rename");
 var imagemin     = require("gulp-imagemin");
 var pngquant     = require('imagemin-pngquant');
 var notify       = require("gulp-notify");
@@ -61,10 +61,10 @@ gulp.task('templates', function () {
 gulp.task('scripts', function() {
   gulp.src('src/js/*.js')
     .pipe(uglify())
-    .pipe(rename({
-      dirname: "min",
-      suffix: ".min",
-    }))
+    // .pipe(rename({
+    //   dirname: "min",
+    //   suffix: ".min",
+    // }))
     .pipe(gulp.dest('public/js'))
 });
 
@@ -103,13 +103,13 @@ gulp.task('vendors', function() {
 **/
 gulp.task('scss', function() {
   gulp.src('src/scss/**/*.scss')
-  .pipe(sass({outputStyle: 'compressed'}))
+  .pipe(sass())
   .on('error', notify.onError(function (error) {
      return 'An error occurred while compiling scss.\nLook in the console for details.\n' + error;
   }))
-  .pipe(rename({
-    suffix: ".min",
-  }))
+  // .pipe(rename({
+  //   suffix: ".min",
+  // }))
   .pipe(prefix('last 3 versions', '> 1%', 'ie 8', 'Android 2', 'Firefox ESR'))
   .pipe(plumber())
   .pipe(gulp.dest('public/css'));
@@ -131,6 +131,14 @@ gulp.task('browser-sync', function() {
     }
   });
 });
+
+// browserSync.init({
+//     open: 'external',
+//     files: ['./**/*.php'],
+//     host: 'wp-starter.dev',
+//     proxy: 'wp-starter.dev',
+//     port: 3000
+// });
 
 
 
